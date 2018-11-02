@@ -86,13 +86,54 @@ export class StartupService {
           {
             text: '仪表盘',
             link: '/dashboard',
-            icon: 'anticon anticon-appstore-o'
+            icon: 'anticon anticon-appstore-o',
+            shortcutRoot: true,
+            // reuse: false,
           },
           {
-            text: '快捷菜单',
+            text: '微电网管理',
+            icon: 'anticon anticon-global',
+            children: [
+              {
+                text: '结构设计',
+                link: '/network/design',
+                // reuse: false,
+              },
+              {
+                text: '新建方案',
+                link: '/network/generateProject',
+                // reuse: false,
+              },
+              // {
+              //   text: '设备管理',
+              //   // link: '/sys/log',
+              //   // reuse: false,
+              // }
+            ]
+          },
+          {
+            text: '系统管理',
             icon: 'anticon anticon-rocket',
-            shortcutRoot: true
-          }
+            // link: '/sys/log',
+            // shortcutRoot: true,
+            children: [
+              {
+                text: '日志管理',
+                link: '/sys/log',
+                // reuse: false,
+              },
+              // {
+              //   text: '用户管理',
+              //   // link: '/sys/log',
+              //   // reuse: false,
+              // },
+              // {
+              //   text: '付费管理',
+              //   // link: '/sys/log',
+              //   // reuse: false,
+              // }
+            ]
+          },
         ]
       },
     ]);

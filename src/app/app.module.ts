@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // #region default language
 // 参考：https://ng-alain.com/docs/i18n
 import { default as ngLang } from '@angular/common/locales/zh-Hans';
-import { NZ_I18N, zh_CN as zorroLang } from 'ng-zorro-antd';
+import {NZ_I18N, NZ_MODAL_CONFIG, zh_CN as zorroLang} from 'ng-zorro-antd';
 import { DELON_LOCALE, zh_CN as delonLang } from '@delon/theme';
 const LANG = {
   abbr: 'zh-Hans',
@@ -61,12 +61,20 @@ const APPINIT_PROVIDES = [
 ];
 // #endregion
 
+
+// const MY_PROVIDES = [
+//   // 解决模态框右边变化
+//   { provide: NZ_MODAL_CONFIG, useValue: { autoBodyPadding: false }},
+// ]
+
 import { DelonModule } from './delon.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { RoutesModule } from './routes/routes.module';
 import { LayoutModule } from './layout/layout.module';
+import {ReuseTabService, ReuseTabStrategy} from '@delon/abc';
+import {RouteReuseStrategy} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -87,7 +95,14 @@ import { LayoutModule } from './layout/layout.module';
   providers: [
     ...LANG_PROVIDES,
     ...INTERCEPTOR_PROVIDES,
-    ...APPINIT_PROVIDES
+    ...APPINIT_PROVIDES,
+
+    // ...MY_PROVIDES
+    {
+      provide: RouteReuseStrategy,
+      useClass: ReuseTabStrategy,
+      deps: [ReuseTabService],
+    }
   ],
   bootstrap: [AppComponent]
 })

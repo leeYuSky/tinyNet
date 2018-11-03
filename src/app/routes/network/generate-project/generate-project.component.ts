@@ -79,10 +79,6 @@ export class NetworkGenerateProjectComponent implements OnInit {
   }
 
 
-  closeOf4Phase() {
-    this.reuseTabService.close('/network/generateProject');
-  }
-
   getCheckOptions(event) {
     this.checkOptions = event;
     console.log(this.checkOptions);

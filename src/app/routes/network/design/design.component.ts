@@ -59,22 +59,23 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     'checkOptionsOne_component'
   ];
 
+  // 初始值
   init_checkOptions = new Set(['1_1', '2_1', '2_2', '2_3', '3_1', '4_1']);
   init_radioValue = 'A';
 
-  // 负荷 多选框
+  // 负荷 多选框 状态
   allChecked_load = false;
   indeterminate_load = false;
 
-  // 可再生能源 多选框
+  // 可再生能源 多选框 状态
   allChecked_renewable_energy = false;
   indeterminate_renewable_energy = false;
 
-  // 储能 多选框
+  // 储能 多选框 状态
   allChecked_stored_energy = false;
   indeterminate_stored_energy = false;
 
-  // 元件 多选框
+  // 元件 多选框 状态
   allChecked_component = false;
   indeterminate_component = false;
 
@@ -101,13 +102,12 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
   }
 
 
-
   _onReuseInit() {
     console.log('_onReuseInit');
   }
 
   hello(name) {
-    console.log(name);
+    // console.log(name);
   }
 
   add() {

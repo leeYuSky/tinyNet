@@ -19,7 +19,7 @@
         <span>下一步</span>
       </button>
       <button nz-button nzType="primary" (click)="done()" *ngIf="current === 2">
-        <span>计算</span>
+        <span>完成</span>
       </button>
     </div>
   </ng-template>
@@ -34,66 +34,21 @@
 </div>
 
 <div class="steps-content" *ngIf="current == 1">
-  设备选择
+  <app-network-select [checkOptions]="checkOptions"
+                      [radioValue]="radioValue">
+
+  </app-network-select>
 </div>
 
 <div class="steps-content" *ngIf="current == 2">
-  约束控制
+  <app-network-control>
+
+  </app-network-control>
 </div>
 
 <div class="steps-content" *ngIf="current == 3">
-  <nz-card>
-    <result
-      type="success"
-      [title]="'方案创建成功'"
-      description="您的方案已经创建成功，目前正在计算中，请您耐心等候。"
-      [extra]="resultExtra">
-      <ng-template #resultExtra>
-        <div nz-row [nzGutter]="16" class="mb-md">
-          <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="6">
-            <span class="text-grey-darker">项目 ID：</span>
-            23421
-          </div>
-          <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="6">
-            <span class="text-grey-darker">负责人：</span>
-            曲丽丽
-          </div>
-          <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="12">
-            <span class="text-grey-darker">生效时间：</span>
-            2016-12-12 ~ 2017-12-12
-          </div>
-        </div>
-        <nz-steps [nzCurrent]="1" nzProgressDot>
-          <nz-step [nzTitle]="'创建项目'" [nzDescription]="createDesc">
-            <ng-template #createDesc>
-              <div style="font-size: 14px; position: relative; left: 38px; text-align: left;">
-                <div style="margin-top: 8px; margin-bottom: 4px;">
-                  曲丽丽<i nz-icon type="dingding" class="ml-sm"></i>
-                </div>
-                <div style="margin-top: 8px; margin-bottom: 4px;">2016-12-12 12:32</div>
-              </div>
-            </ng-template>
-          </nz-step>
-          <nz-step [nzTitle]="'部门初审'" [nzDescription]="checkedDesc">
-            <ng-template #checkedDesc>
-              <div style="font-size: 14px; position: relative; left: 38px; text-align: left;">
-                <div style="margin-top: 8px; margin-bottom: 4px;">
-                  周毛毛<i nz-icon type="dingding" class="ml-sm" style="color: #00a0e9;"></i>
-                </div>
-                <div style="margin-top: 8px; margin-bottom: 4px;">
-                  <a (click)="msg.success('click')">催一下</a>
-                </div>
-              </div>
-            </ng-template>
-          </nz-step>
-          <nz-step [nzTitle]="'财务复核'"></nz-step>
-          <nz-step [nzTitle]="'完成'"></nz-step>
-        </nz-steps>
-      </ng-template>
-      <button nz-button [nzType]="'primary'" (click)="closeOf4Phase()">关闭</button>
-      <button nz-button>查看当前进度</button>
-      <!--<button nz-button>打 印</button>-->
-    </result>
-  </nz-card>
+  <app-network-result>
+
+  </app-network-result>
 </div>
 

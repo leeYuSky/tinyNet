@@ -3,6 +3,7 @@ import { _HttpClient, ModalHelper } from '@delon/theme';
 
  // 自己导入的
 import * as svgPanZoom from 'assets/js/svg-pan-zoom.min.js';
+import {NzModalService} from "ng-zorro-antd";
 
 @Component({
   selector: 'app-network-design',
@@ -15,9 +16,13 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
 
   @Input() default_radioValue: any;
 
+  @Input() default_checkOptions_object: any;
+
   @Output() checkOptionsEmitter = new EventEmitter<Set<string>>();
 
   @Output() radioValueEmitter = new EventEmitter<string>();
+
+  @Output() allCheckOptionsEmitter = new EventEmitter<any>();
 
   current_checkOptions = new Set();
 
@@ -27,28 +32,28 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
 
   checkOptions = {
     checkOptionsOne_load: [
-      { label: '首要负荷', value: '1_1', checked: false },
-      { label: '冷负荷', value: '1_2', checked: false },
-      { label: '热负荷', value: '1_3', checked: false }
+      { label: '首要负荷', value: '1_1', checked: false, disabled: false },
+      { label: '冷负荷', value: '1_2', checked: false, disabled: false },
+      { label: '热负荷', value: '1_3', checked: false, disabled: false }
     ],
     checkOptionsOne_renewable_energy: [
-      { label: '风力发电机', value: '2_1', checked: false },
-      { label: '光伏阵列', value: '2_2', checked: false },
-      { label: '水力发电机', value: '2_3', checked: false }
+      { label: '风力发电机', value: '2_1', checked: false, disabled: false },
+      { label: '光伏阵列', value: '2_2', checked: false, disabled: false },
+      { label: '水力发电机', value: '2_3', checked: false, disabled: false }
     ],
     checkOptionsOne_stored_energy: [
-      { label: '电池储能系统', value: '3_1', checked: false },
-      { label: '蓄冰装置', value: '3_2', checked: false },
-      { label: '储热装置', value: '3_3', checked: false }
+      { label: '电池储能系统', value: '3_1', checked: false, disabled: false },
+      { label: '蓄冰装置', value: '3_2', checked: false, disabled: false },
+      { label: '储热装置', value: '3_3', checked: false, disabled: false }
     ],
     checkOptionsOne_component: [
-      { label: '常规发电机', value: '4_1', checked: false },
-      { label: '燃气锅炉', value: '4_2', checked: false },
-      { label: '热泵', value: '4_3', checked: false },
-      { label: '电锅炉', value: '4_4', checked: false },
-      { label: '热交换装置', value: '4_5', checked: false },
-      { label: '电制冷机', value: '4_6', checked: false },
-      { label: '吸收式制冷机', value: '4_7', checked: false }
+      { label: '常规发电机', value: '4_1', checked: false, disabled: false },
+      { label: '燃气锅炉', value: '4_2', checked: false, disabled: false },
+      { label: '热泵', value: '4_3', checked: false, disabled: false },
+      { label: '电锅炉', value: '4_4', checked: false, disabled: false },
+      { label: '热交换装置', value: '4_5', checked: false, disabled: false },
+      { label: '电制冷机', value: '4_6', checked: false, disabled: false },
+      { label: '吸收式制冷机', value: '4_7', checked: false, disabled: false }
     ],
   };
 
@@ -62,6 +67,10 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
   // 初始值
   init_checkOptions = new Set(['1_1', '2_1', '2_2', '2_3', '3_1', '4_1']);
   init_radioValue = 'A';
+  init_no_init_checkOptions = new Set(['1_2', '1_3', '3_2', '3_3', '4_2', '4_3', '4_4', '4_5', '4_6', '4_7']);
+  init_B_checkOptions = new Set(['1_2', '1_3']);
+  init_cold_checkOptions = new Set(['3_2', '4_6', '4_7']);
+  init_hot_checkOptions = new Set(['3_3', '4_2', '4_3', '4_4', '4_5']);
 
   // 负荷 多选框 状态
   allChecked_load = false;
@@ -80,7 +89,10 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
   indeterminate_component = false;
 
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) { }
+  constructor(private http: _HttpClient,
+              private modal: ModalHelper,
+              private modalService: NzModalService
+  ) { }
 
   ngOnInit() {
     console.log('NetworkDesignComponent init');
@@ -93,11 +105,15 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
       dblClickZoomEnabled: false
     });
     this.setDefaultValues();
+
+    this.checkOptions['checkOptionsOne_load'][0]['disabled'] = true;
+    // this.updateRadio();
   }
 
   ngOnDestroy() {
     this.checkOptionsEmitter.emit(this.current_checkOptions);
     this.radioValueEmitter.emit(this.radioValue);
+    this.allCheckOptionsEmitter.emit(this.checkOptions);
     console.log('NetworkDesignComponent Destroy');
   }
 
@@ -114,6 +130,33 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
+  }
+
+  updateRadio() {
+    if (this.radioValue === 'A') {
+      this.init_no_init_checkOptions.forEach((key, value) => {
+        const temp = value.split('_');
+        const a = parseInt(temp[0], 10);
+        const b = parseInt(temp[1], 10);
+        this.checkOptions[this.checkOptionsMapping[a - 1]][b - 1]['disabled'] = true;
+        if (this.checkOptions[this.checkOptionsMapping[a - 1]][b - 1]['checked'] === true) {
+          this.checkOptions[this.checkOptionsMapping[a - 1]][b - 1]['checked'] = false;
+          this.current_checkOptions.delete(value);
+          console.log(this.current_checkOptions);
+        }
+      });
+      const c = this.parseValue('4_1');
+      if (this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['disabled'] === true) {
+        this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['disabled'] = false;
+      }
+    } else {
+      this.init_B_checkOptions.forEach((key, value) => {
+        const temp = value.split('_');
+        const a = parseInt(temp[0], 10);
+        const b = parseInt(temp[1], 10);
+        this.checkOptions[this.checkOptionsMapping[a - 1]][b - 1]['disabled'] = false;
+      });
+    }
   }
 
   /**
@@ -138,8 +181,54 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
 
   updateSingleChecked_load(event, value): void {
     if (event === true) {
+
+      // 当选定 冷负荷 时，解锁所有的冷设备
+      if (value === '1_2') {
+        this.init_cold_checkOptions.forEach((key, value1) => {
+          const c = this.parseValue(key);
+          this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['disabled'] = false;
+        });
+        // 当选定 热负荷 时，解锁所有的热设备
+      } else if (value === '1_3') {
+        this.init_hot_checkOptions.forEach((key, value1) => {
+          const c = this.parseValue(key);
+          this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['disabled'] = false;
+        });
+      }
       this.current_checkOptions.add(value);
     } else {
+      // 当取消选定 冷负荷 时，锁住所有的冷设备并取消以前的选择
+      if (value === '1_2') {
+        this.init_cold_checkOptions.forEach((key, value1) => {
+          const c = this.parseValue(key);
+          this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['checked'] = false;
+          this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['disabled'] = true;
+          this.current_checkOptions.delete(key);
+          // 当冷设备里面选择了 吸收式制冷机 时，取消锁定 热负荷
+          if (key === '4_7') {
+            const d = this.parseValue('1_3');
+            if (this.checkOptions[this.checkOptionsMapping[d[0] - 1]][d[1] - 1]['disabled'] === true) {
+              this.checkOptions[this.checkOptionsMapping[d[0] - 1]][d[1] - 1]['disabled'] = false;
+            }
+          }
+        });
+        // 当取消选定 热负荷 时，锁住所有的热设备并取消以前的选择
+      } else if (value === '1_3') {
+        this.init_hot_checkOptions.forEach((key, value1) => {
+          const c = this.parseValue(key);
+          this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['checked'] = false;
+          this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['disabled'] = true;
+          this.current_checkOptions.delete(key);
+          // 当热设备里面选择了 热交换装置 时，取消锁定 常规发电机
+          if (key === '4_5') {
+            const d = this.parseValue('4_1');
+            if (this.checkOptions[this.checkOptionsMapping[d[0] - 1]][d[1] - 1]['disabled'] === true) {
+              this.checkOptions[this.checkOptionsMapping[d[0] - 1]][d[1] - 1]['disabled'] = false;
+            }
+          }
+        });
+      }
+
       this.current_checkOptions.delete(value);
     }
     if (this.checkOptions.checkOptionsOne_load.every(item => item.checked === false)) {
@@ -252,8 +341,46 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
 
   updateSingleChecked_component(event, value): void {
     if (event === true) {
+
+      // 当选择 热交换装置 时，自动勾选 常规发电机 并锁定
+      if (value === '4_5') {
+        if (!this.current_checkOptions.has('4_1')) {
+          this.parseAndAddValue('4_1');
+        }
+        const c = this.parseValue('4_1');
+        this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['disabled'] = true;
+      }
+
+      // 当选择 吸收式制冷机 时，自动勾选 热负荷 并锁定
+      if (value === '4_7') {
+        this.parseAndAddValue('1_3');
+        const c = this.parseValue('1_3');
+        this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['disabled'] = true;
+      }
+
+      // const m = this.parseValue(value);
+      // console.log(m)
+      // if (this.checkOptions[this.checkOptionsMapping[m[0] - 1]][m[1] - 1]['disabled'] === true) {
+      //   console.log(true);
+      //   this.checkOptions[this.checkOptionsMapping[m[0] - 1]][m[1] - 1]['disabled'] = false;
+      // }
+
       this.current_checkOptions.add(value);
     } else {
+
+      // 当取消 热交换装置 时，取消 常规发电机 锁定
+      if (value === '4_5') {
+        const c = this.parseValue('4_1');
+        this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['disabled'] = false;
+      }
+
+      // 当取消 吸收式制冷机 时，取消 热负荷 锁定
+      if (value === '4_7') {
+        const c = this.parseValue('1_3');
+        this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['disabled'] = false;
+      }
+
+
       this.current_checkOptions.delete(value);
     }
     if (this.checkOptions.checkOptionsOne_component.every(item => item.checked === false)) {
@@ -276,8 +403,18 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
   setDefaultValues() {
     if (!this.default_radioValue) {
       this.radioValue = this.init_radioValue;
+      this.init_no_init_checkOptions.forEach((key, value) => {
+        const temp = value.split('_');
+        const a = parseInt(temp[0], 10);
+        const b = parseInt(temp[1], 10);
+        this.checkOptions[this.checkOptionsMapping[a - 1]][b - 1]['disabled'] = true;
+      });
     } else {
       this.radioValue = this.default_radioValue;
+    }
+
+    if (this.default_checkOptions_object) {
+      this.checkOptions = this.default_checkOptions_object;
     }
 
     if (!this.default_checkOptions) {
@@ -312,4 +449,27 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * 解析属性
+   */
+  parseValue(value) {
+    const temp = value.split('_');
+    const a = parseInt(temp[0], 10);
+    const b = parseInt(temp[1], 10);
+    return [a, b];
+  }
+
+  /**
+   * 须知
+   */
+  getModalKnowledge() {
+    this.modalService.info({
+      nzTitle: '您应该了解',
+      nzContent: '<p>1. 在离网模式下，<b>电池储能系统</b>与<b>常规发电机</b>至少包含一个。</p>' +
+                 '<p>2. 在并网模式下，<b>电池储能系统</b>、<b>蓄冰装置</b>、<b>储热装置</b>与<b>常规发电机</b>至少包含一个。</p>' +
+                 '<p>3. 在选择冷负荷下，<b>电制冷机</b>与<b>吸收式制冷机</b>至少包含一个</p>' +
+                 '<p>4. 在选择热负荷下，<b>燃气锅炉</b>、<b>热泵</b>、<b>电锅炉</b>与<b>热交换装置</b>至少包含一个</p>',
+      nzWidth: '650'
+    });
+  }
 }

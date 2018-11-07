@@ -36,8 +36,9 @@
 </div>
 
 <div class="steps-content" *ngIf="current == 1">
-  <app-network-select [checkOptions]="checkOptions"
-                      [radioValue]="radioValue">
+  <app-network-select [checkOptionsSet]="checkOptions"
+                      [radioValue]="radioValue"
+                      [checkOptions]="allCheckOptions">
 
   </app-network-select>
 </div>

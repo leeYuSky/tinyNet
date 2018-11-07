@@ -3,7 +3,7 @@ import { _HttpClient, ModalHelper } from '@delon/theme';
 
  // 自己导入的
 import * as svgPanZoom from 'assets/js/svg-pan-zoom.min.js';
-import {NzModalService} from "ng-zorro-antd";
+import {NzModalService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-network-design',
@@ -25,6 +25,8 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
   @Output() allCheckOptionsEmitter = new EventEmitter<any>();
 
   current_checkOptions = new Set();
+
+
 
   zoomSvg: any;
 
@@ -107,7 +109,6 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     this.setDefaultValues();
 
     this.checkOptions['checkOptionsOne_load'][0]['disabled'] = true;
-    // this.updateRadio();
   }
 
   ngOnDestroy() {
@@ -357,13 +358,6 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
         const c = this.parseValue('1_3');
         this.checkOptions[this.checkOptionsMapping[c[0] - 1]][c[1] - 1]['disabled'] = true;
       }
-
-      // const m = this.parseValue(value);
-      // console.log(m)
-      // if (this.checkOptions[this.checkOptionsMapping[m[0] - 1]][m[1] - 1]['disabled'] === true) {
-      //   console.log(true);
-      //   this.checkOptions[this.checkOptionsMapping[m[0] - 1]][m[1] - 1]['disabled'] = false;
-      // }
 
       this.current_checkOptions.add(value);
     } else {

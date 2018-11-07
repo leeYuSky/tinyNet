@@ -14,7 +14,9 @@ export class NetworkSelectComponent implements OnInit {
 
   @Input() radioValue: any;
 
-  @Input() checkOptions: Set<string>;
+  @Input() checkOptionsSet: Set<string>;
+
+  @Input() checkOptions: any;
 
   i = 1;
 
@@ -24,7 +26,7 @@ export class NetworkSelectComponent implements OnInit {
 
   ngOnInit() {
     console.log('NetworkSelectComponent init');
-    console.log(this.checkOptions);
+    console.log(this.checkOptionsSet);
   }
 
   hello(name) {

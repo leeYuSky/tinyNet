@@ -1,12 +1,14 @@
 <form nz-form>
   <nz-card nzTitle="系统控制">
 
+    <button nz-button nzType="primary" (click)="getData()">Primary</button>
+
     <div nz-row *ngIf="radioValue === 'A'">
       <div nz-col [nzXs]="24" [nzMd]="8">
         <nz-form-item>
           <nz-form-label nzSpan="24"  nzFor="strategy_radioValue">运行策略</nz-form-label>
           <nz-form-control nzSpan="24">
-            <nz-radio-group name="strategy_radioValue" id="strategy_radioValue" [(ngModel)]="strategy_radioValue" [nzButtonStyle]="'solid'">
+            <nz-radio-group name="strategy_radioValue" id="strategy_radioValue" [(ngModel)]="form_data.system.strategy_radioValue" [nzButtonStyle]="'solid'">
               <label nz-radio-button nzValue="strategy1" >硬充电策略</label>
               <label nz-radio-button nzValue="strategy2" >平滑功率策略</label>
             </nz-radio-group>
@@ -20,7 +22,7 @@
         <nz-form-item>
           <nz-form-label nzSpan="24"  nzFor="strategy_radioValue_all">运行策略</nz-form-label>
           <nz-form-control nzSpan="24">
-            <nz-radio-group name="strategy_radioValue_all" id="strategy_radioValue_all" [(ngModel)]="strategy_radioValue_all" [nzButtonStyle]="'solid'">
+            <nz-radio-group name="strategy_radioValue_all" id="strategy_radioValue_all" [(ngModel)]="form_data.system.strategy_radioValue_all" [nzButtonStyle]="'solid'">
               <label nz-radio-button nzValue="strategy0" nzDisabled>调度策略</label>
             </nz-radio-group>
           </nz-form-control>
@@ -37,7 +39,7 @@
             </nz-form-label>
             <nz-form-control nzSpan="24" *ngIf="strategy_internal">
               <nz-input-group  nzAddOnAfter="%" nzAddOnBefore="权重" style="width:80%">
-                <input type="text" name="strategy_internal_rate" id="strategy_internal_rate" nz-input placeholder="0.00">
+                <input type="text" name="strategy_internal_rate" id="strategy_internal_rate" [(ngModel)]="form_data.system.strategy_internal_rate" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -49,7 +51,7 @@
             </nz-form-label>
             <nz-form-control nzSpan="24" *ngIf="strategy_pollution">
               <nz-input-group  nzAddOnAfter="%" nzAddOnBefore="权重" style="width:80%">
-                <input type="text" name="strategy_pollution_rate" id="strategy_pollution_rate" nz-input placeholder="0.00">
+                <input type="text" name="strategy_pollution_rate" id="strategy_pollution_rate" [(ngModel)]="form_data.system.strategy_pollution_rate" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -65,7 +67,7 @@
             <nz-form-label nzSpan="24"  nzFor="buy_constraint_1">购电上限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="kW" style="width:80%">
-                <input type="text" name="buy_constraint_1" id="buy_constraint_1" nz-input placeholder="0.00">
+                <input type="text" name="buy_constraint_1" id="buy_constraint_1" [(ngModel)]="form_data.system.buy_constraint_1" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -75,7 +77,7 @@
             <nz-form-label nzSpan="24"  nzFor="sell_constraint_2">售电上限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="kW" style="width:80%">
-                <input type="text" name="sell_constraint_2" id="sell_constraint_2" nz-input placeholder="0.00">
+                <input type="text" name="sell_constraint_2" id="sell_constraint_2" [(ngModel)]="form_data.system.sell_constraint_2" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>

@@ -10,12 +10,8 @@ export class NetworkControlComponent implements OnInit {
 
   @Input() radioValue: string;
 
-  // strategy_radioValue;
-  // strategy_radioValue_all = 'strategy0';
   strategy_internal = true;
-  strategy_internal_rate: any;
   strategy_pollution = true;
-  strategy_pollution_rate: any;
 
   form_data =  {
     system : {
@@ -26,6 +22,37 @@ export class NetworkControlComponent implements OnInit {
       buy_constraint_1 : '0.00',
       sell_constraint_2 : '0.00'
     },
+    economy : {
+      system_economy_1 : '0.00',
+      system_economy_2 : '0.00',
+      system_economy_3 : '0.00',
+      system_economy_4 : '0.00',
+      system_economy_5 : '0.00',
+      engineering_economy_1 : '0.00',
+      engineering_economy_2 : '0.00',
+      engineering_economy_3 : '0.00',
+      engineering_economy_4 : '0.00',
+      engineering_economy_5 : '0.00',
+      engineering_economy_6 : '0.00',
+      engineering_economy_7 : '0.00',
+      engineering_economy_8 : '0.00',
+    },
+    emission : {
+      emission_punishment_1 : '0.00',
+      emission_punishment_2 : '0.00',
+      emission_punishment_3 : '0.00',
+      emission_punishment_4 : '0.00',
+      emission_punishment_5 : '0.00',
+      emission_punishment_6 : '0.00',
+    },
+    constraint : {
+      system_constraint_1 : '0.00',
+      system_constraint_2 : '0.00',
+      spare_constraint_1 : '0.00',
+      spare_constraint_2 : '0.00',
+      spare_constraint_3 : '0.00',
+      spare_constraint_4 : '0.00',
+    }
   };
 
   constructor(private http: _HttpClient) { }
@@ -33,7 +60,7 @@ export class NetworkControlComponent implements OnInit {
   ngOnInit() { }
 
   getData() {
-    console.log(this.form_data);
+    console.log(JSON.stringify(this.form_data));
   }
 
 }

@@ -96,7 +96,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_economy_1">系统固定初始投资成本</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元" style="width:80%">
-                <input type="text" name="system_economy_1" id="system_economy_1" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_1" id="system_economy_1" [(ngModel)]="form_data.economy.system_economy_1" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -106,7 +106,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_economy_2">容量短缺惩罚系数</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/kWh" style="width:80%">
-                <input type="text" name="system_economy_2" id="system_economy_2" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_2" id="system_economy_2" [(ngModel)]="form_data.economy.system_economy_2" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -116,7 +116,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_economy_3">汽油价格</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/L" style="width:80%">
-                <input type="text" name="system_economy_3" id="system_economy_3" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_3" id="system_economy_3" [(ngModel)]="form_data.economy.system_economy_3" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -129,7 +129,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_economy_4">柴油价格</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元" style="width:80%">
-                <input type="text" name="system_economy_4" id="system_economy_4" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_4" id="system_economy_4" [(ngModel)]="form_data.economy.system_economy_4" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -139,7 +139,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_economy_5">微网电价</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/kWh" style="width:80%">
-                <input type="text" name="system_economy_5" id="system_economy_5" nz-input placeholder="0.00">
+                <input type="text" name="system_economy_5" id="system_economy_5" [(ngModel)]="form_data.economy.system_economy_5" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -154,7 +154,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_1">贴现率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="engineering_economy_1" id="engineering_economy_1" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_1" id="engineering_economy_1" [(ngModel)]="form_data.economy.engineering_economy_1" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -164,7 +164,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_2">名义利率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="engineering_economy_2" id="engineering_economy_2" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_2" id="engineering_economy_2" [(ngModel)]="form_data.economy.engineering_economy_2" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -174,7 +174,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_3">通货膨胀率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="engineering_economy_3" id="engineering_economy_3" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_3" id="engineering_economy_3" [(ngModel)]="form_data.economy.engineering_economy_3" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -187,7 +187,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_4">项目建设期</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="年" style="width:80%">
-                <input type="text" name="engineering_economy_4" id="engineering_economy_4" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_4" id="engineering_economy_4" [(ngModel)]="form_data.economy.engineering_economy_4" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -197,7 +197,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_5">银行长期贷款利率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="engineering_economy_5" id="engineering_economy_5" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_5" id="engineering_economy_5" [(ngModel)]="form_data.economy.engineering_economy_5" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -207,7 +207,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_6">初始投资资本金比例</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="engineering_economy_6" id="engineering_economy_6" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_6" id="engineering_economy_6" [(ngModel)]="form_data.economy.engineering_economy_6" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -220,7 +220,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_7">项目寿命周期</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="年" style="width:80%">
-                <input type="text" name="engineering_economy_7" id="engineering_economy_7" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_7" id="engineering_economy_7" [(ngModel)]="form_data.economy.engineering_economy_7" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -230,7 +230,7 @@
             <nz-form-label nzSpan="24"  nzFor="engineering_economy_8">银行还款期限</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="年" style="width:80%">
-                <input type="text" name="engineering_economy_8" id="engineering_economy_8" nz-input placeholder="0.00">
+                <input type="text" name="engineering_economy_8" id="engineering_economy_8" [(ngModel)]="form_data.economy.engineering_economy_8" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -250,7 +250,7 @@
             <nz-form-label nzSpan="24"  nzFor="emission_punishment_1">二氧化碳排放惩罚系数</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/吨" style="width:80%">
-                <input type="text" name="emission_punishment_1" id="emission_punishment_1" nz-input placeholder="0.00">
+                <input type="text" name="emission_punishment_1" id="emission_punishment_1" [(ngModel)]="form_data.emission.emission_punishment_1" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -260,7 +260,7 @@
             <nz-form-label nzSpan="24"  nzFor="emission_punishment_2">一氧化碳排放惩罚系数</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/吨" style="width:80%">
-                <input type="text" name="emission_punishment_2" id="emission_punishment_2" nz-input placeholder="0.00">
+                <input type="text" name="emission_punishment_2" id="emission_punishment_2" [(ngModel)]="form_data.emission.emission_punishment_2" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -270,7 +270,7 @@
             <nz-form-label nzSpan="24"  nzFor="emission_punishment_3">未燃烧碳氰化物排放惩罚系数</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/吨" style="width:80%">
-                <input type="text" name="emission_punishment_3" id="emission_punishment_3" nz-input placeholder="0.00">
+                <input type="text" name="emission_punishment_3" id="emission_punishment_3" [(ngModel)]="form_data.emission.emission_punishment_3" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -283,7 +283,7 @@
             <nz-form-label nzSpan="24"  nzFor="emission_punishment_4">颗粒物排放惩罚系数</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/吨" style="width:80%">
-                <input type="text" name="emission_punishment_4" id="emission_punishment_4" nz-input placeholder="0.00">
+                <input type="text" name="emission_punishment_4" id="emission_punishment_4" [(ngModel)]="form_data.emission.emission_punishment_4" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -293,7 +293,7 @@
             <nz-form-label nzSpan="24"  nzFor="emission_punishment_5">二氧化硫排放惩罚系数</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/吨" style="width:80%">
-                <input type="text" name="emission_punishment_5" id="emission_punishment_5" nz-input placeholder="0.00">
+                <input type="text" name="emission_punishment_5" id="emission_punishment_5" [(ngModel)]="form_data.emission.emission_punishment_5" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -303,7 +303,7 @@
             <nz-form-label nzSpan="24"  nzFor="emission_punishment_6">氮氧化物排放惩罚系数</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="元/吨" style="width:80%">
-                <input type="text" name="emission_punishment_6" id="emission_punishment_6" nz-input placeholder="0.00">
+                <input type="text" name="emission_punishment_6" id="emission_punishment_6" [(ngModel)]="form_data.emission.emission_punishment_6" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -322,7 +322,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_constraint_1">最大容量缺失率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="system_constraint_1" id="system_constraint_1" nz-input placeholder="0.00">
+                <input type="text" name="system_constraint_1" id="system_constraint_1" [(ngModel)]="form_data.constraint.system_constraint_1" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -332,7 +332,7 @@
             <nz-form-label nzSpan="24"  nzFor="system_constraint_2">最小可再生能源渗透率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="system_constraint_2" id="system_constraint_2" nz-input placeholder="0.00">
+                <input type="text" name="system_constraint_2" id="system_constraint_2" [(ngModel)]="form_data.constraint.system_constraint_2" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -347,7 +347,7 @@
             <nz-form-label nzSpan="24"  nzFor="spare_constraint_1">光伏功率备用比例</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="spare_constraint_1" id="spare_constraint_1" nz-input placeholder="0.00">
+                <input type="text" name="spare_constraint_1" id="spare_constraint_1" [(ngModel)]="form_data.constraint.spare_constraint_1" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -357,7 +357,7 @@
             <nz-form-label nzSpan="24"  nzFor="spare_constraint_2">风机功率备用比例</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="spare_constraint_2" id="spare_constraint_2" nz-input placeholder="0.00">
+                <input type="text" name="spare_constraint_2" id="spare_constraint_2" [(ngModel)]="form_data.constraint.spare_constraint_2" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -367,7 +367,7 @@
             <nz-form-label nzSpan="24"  nzFor="spare_constraint_3">实时负荷备用率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="spare_constraint_3" id="spare_constraint_3" nz-input placeholder="0.00">
+                <input type="text" name="spare_constraint_3" id="spare_constraint_3" [(ngModel)]="form_data.constraint.spare_constraint_3" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -380,7 +380,7 @@
             <nz-form-label nzSpan="24"  nzFor="spare_constraint_4">峰值负荷备用率</nz-form-label>
             <nz-form-control nzSpan="24">
               <nz-input-group  nzAddOnAfter="%" style="width:80%">
-                <input type="text" name="spare_constraint_4" id="spare_constraint_4" nz-input placeholder="0.00">
+                <input type="text" name="spare_constraint_4" id="spare_constraint_4" [(ngModel)]="form_data.constraint.spare_constraint_4" nz-input placeholder="0.00">
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>

@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'generateProject', component: NetworkGenerateProjectComponent },
   { path: 'select', component: NetworkSelectComponent },
   { path: 'control', component: NetworkControlComponent },
-  { path: 'result', component: NetworkResultComponent }];
+  { path: 'result', component: NetworkResultComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

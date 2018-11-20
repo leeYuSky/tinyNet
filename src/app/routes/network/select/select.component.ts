@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {_HttpClient, ModalHelper} from '@delon/theme';
-import {NetworkSelectViewComponent} from './view/view.component';
+import { NetworkSelectBatteryViewComponent } from './view/battery-view.component';
 import {NzModalService} from 'ng-zorro-antd';
 
 
@@ -20,8 +20,10 @@ export class NetworkSelectComponent implements OnInit {
 
   i = 1;
 
-  constructor(private http: _HttpClient,
-              private modalService: NzModalService
+  constructor(
+    private http: _HttpClient,
+    private modalService: NzModalService,
+    private el: ElementRef,
   ) { }
 
   ngOnInit() {
@@ -33,13 +35,14 @@ export class NetworkSelectComponent implements OnInit {
     console.log(name);
     const modal = this.modalService.create({
       nzTitle: '设备详情',
-      nzContent: NetworkSelectViewComponent,
+      nzContent: NetworkSelectBatteryViewComponent,
       nzComponentParams: {
         title: 'title in component',
         record: {
           id: 1
         }
       },
+      nzGetContainer: this.el.nativeElement.querySelector('#battery-view'),
       nzMaskClosable: false,
       nzWidth: '90%',
       nzFooter: [

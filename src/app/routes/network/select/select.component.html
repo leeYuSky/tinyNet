@@ -288,12 +288,14 @@
 
   <nz-card nzTitle="结构设计"  style="margin-left: 540px;min-height: 620px" [nzBordered]="false" [nzExtra]="extraTemplate">
     {{radioValue}}
-   <div *ngFor="let option of checkOptionsSet">
+    <div *ngFor="let option of checkOptionsSet">
      {{option}}
-   </div>
-
+    </div>
   </nz-card>
   <ng-template #extraTemplate>
     <a>More</a>
   </ng-template>
+</div>
+<div id="battery-view">
+
 </div>

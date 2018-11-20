@@ -4,23 +4,33 @@ import { NetworkRoutingModule } from './network-routing.module';
 import { NetworkDesignComponent } from './design/design.component';
 import { NetworkGenerateProjectComponent } from './generate-project/generate-project.component';
 import { NetworkSelectComponent } from './select/select.component';
-import { NetworkSelectViewComponent } from './select/view/view.component';
+import { NetworkSelectBatteryViewComponent } from './select/view/battery-view.component';
 import { NetworkControlComponent } from './control/control.component';
 import { NetworkResultComponent } from './result/result.component';
+import { ViserModule } from 'viser-ng';
+import { NetworkSelectBatteryLinechartComponent } from './select/view/battery-linechart.component'; // 导入 viser 模块
+import { G2BarModule} from '@delon/chart';
+// import {BatteryLinehartHostDirective} from "./select/view/battery-linechart-host.directive";
 
 const COMPONENTS = [
   NetworkDesignComponent,
   NetworkGenerateProjectComponent,
   NetworkSelectComponent,
   NetworkControlComponent,
-  NetworkResultComponent];
+  NetworkResultComponent,
+  // BatteryLinehartHostDirective
+];
 const COMPONENTS_NOROUNT = [
-  NetworkSelectViewComponent];
+  NetworkSelectBatteryViewComponent,
+  NetworkSelectBatteryLinechartComponent,
+];
 
 @NgModule({
   imports: [
     SharedModule,
-    NetworkRoutingModule
+    NetworkRoutingModule,
+    ViserModule,
+    G2BarModule
   ],
   declarations: [
     ...COMPONENTS,

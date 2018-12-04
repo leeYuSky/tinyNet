@@ -28,7 +28,8 @@ const routes: Routes = [
       // 业务子模块
       // { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' }
       { path: 'sys', loadChildren: './sys/sys.module#SysModule' },
-      { path: 'network', loadChildren: './network/network.module#NetworkModule' }
+      { path: 'network', loadChildren: './network/network.module#NetworkModule' },
+      { path: 'device', loadChildren: './device/device.module#DeviceModule'}
     ]
   },
   // 全屏布局

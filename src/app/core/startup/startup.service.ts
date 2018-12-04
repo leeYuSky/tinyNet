@@ -95,13 +95,13 @@ export class StartupService {
             icon: 'anticon anticon-global',
             children: [
               {
-                text: '结构设计',
-                link: '/network/design',
+                text: '新建方案',
+                link: '/network/generateProject',
                 // reuse: false,
               },
               {
-                text: '新建方案',
-                link: '/network/generateProject',
+                text: '方案详情',
+                link: '/network/design',
                 // reuse: false,
               },
               // {
@@ -109,6 +109,22 @@ export class StartupService {
               //   // link: '/sys/log',
               //   // reuse: false,
               // }
+            ]
+          },
+          {
+            text: '设备管理',
+            icon: 'anticon anticon-database',
+            children: [
+              {
+                text: '电池',
+                link: '/device/batteryDetail',
+                // reuse: false,
+              },
+              {
+                text: '风力发电机',
+                link: '/device/windGeneratorDetail',
+                // reuse: false,
+              },
             ]
           },
           {

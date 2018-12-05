@@ -5,6 +5,7 @@ import { DeviceBatteryDetailComponent } from './battery-detail/battery-detail.co
 import { DeviceWindGeneratorDetailComponent } from './wind-generator-detail/wind-generator-detail.component';
 import { DeviceBatteryDetailViewComponent } from './battery-detail/view/view.component';
 import { DeviceBatteryDetailEditComponent } from './battery-detail/edit/edit.component';
+import { ViserModule } from 'viser-ng';
 
 const COMPONENTS = [
   DeviceBatteryDetailComponent,
@@ -17,7 +18,8 @@ const COMPONENTS_NOROUNT = [
 @NgModule({
   imports: [
     SharedModule,
-    DeviceRoutingModule
+    DeviceRoutingModule,
+    ViserModule
   ],
   declarations: [
     ...COMPONENTS,

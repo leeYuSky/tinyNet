@@ -1,5 +1,6 @@
 <div class="modal-header">
-  <div class="modal-title">编辑 {{ record.id }} 信息</div>
+  <div class="modal-title" *ngIf="record.id">编辑 {{ record.name }} 信息</div>
+  <div class="modal-title" *ngIf="!record.id">新添 电池 信息</div>
 </div>
 <nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
 <sf *ngIf="i" #sf mode="edit" [schema]="schema" [ui]="ui" [formData]="i" button="none">

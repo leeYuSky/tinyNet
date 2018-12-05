@@ -1,14 +1,35 @@
 <div class="modal-header">
-  <div class="modal-title">查看 {{ record.id }} 信息</div>
+  <div class="modal-title">查看 {{ record.name }} 信息</div>
 </div>
 <nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
-<div sv-container *ngIf="i">
-  <sv label="姓名">{{ i.owner }}</sv>
-  <sv label="会员卡号">32943898021309809423</sv>
-  <sv label="身份证">3321944288191034921</sv>
-  <sv label="联系方式">18112345678</sv>
-  <sv label="联系地址">曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口</sv>
-</div>
+<sv-container col="3" *ngIf="i">
+  <sv label="型号名称">{{ i.name }}</sv>
+  <sv label="额定电压(V)">{{ i.eddy }}</sv>
+  <sv label="循环充放电效率(%)">{{ i.xhcfdxl }}</sv>
+  <sv label="最大充电速率">{{ i.zdcdsl }}</sv>
+  <sv label="最大充电电流(A)">{{ i.zdcddl }}</sv>
+  <sv label="最大放电速率">{{ i.zdfdsl }}</sv>
+  <sv label="电池容量(Ah)">{{ i.dcrl }}</sv>
+  <sv label="寿命(年)">{{ i.life }}</sv>
+  <sv label="全寿命放电量(kWh)">{{ i.qsmfd }}</sv>
+  <sv label="串联个数">{{ i.clgs }}</sv>
+  <sv label="制造商">{{ i.factory }}</sv>
+  <sv label="类型">交流</sv>
+</sv-container>
+<nz-card style="width:100%" nzTitle="经济曲线" *ngIf="i" style="margin-top: 24px;">
+  <div nz-row>
+    <div nz-col nzSpan="23">
+      <v-chart [forceFit]="forceFit" [height]="height" [data]="data">
+        <v-tooltip></v-tooltip>
+        <v-axis dataKey="x" [title]="chart_title_x"></v-axis>
+        <v-axis dataKey="cost_number" [title]="chart_title_y"></v-axis>
+        <v-legend></v-legend>
+        <v-line position="x*cost_number" color="cost_type"></v-line>
+        <v-point position="x*cost_number" color="cost_type" [size]="4" [style]="style" shape="circle"></v-point>
+      </v-chart>
+    </div>
+  </div>
+</nz-card>
 <div class="modal-footer">
   <button nz-button type="button" (click)="close()">关闭</button>
 </div>

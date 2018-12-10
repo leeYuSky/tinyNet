@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
-import { SFSchema, SFUISchema } from '@delon/form';
+import {FormProperty, PropertyGroup, SFSchema, SFUISchema} from '@delon/form';
 
 @Component({
   selector: 'app-device-battery-detail-edit',
@@ -13,15 +13,39 @@ export class DeviceBatteryDetailEditComponent implements OnInit {
   schema: SFSchema = {
     properties: {
       name: { type: 'string', title: '型号名称' },
-      eddy: { type: 'number', title: '额定电压(V)', default: 0, minimum: 0 },
-      xhcfdxl: { type: 'number', title: '循环充放电效率(%)', default: 0, minimum: 0 },
-      zdcdsl: { type: 'number', title: '最大充电速率', default: 0, minimum: 0 },
-      zdcddl: { type: 'number', title: '最大充电电流(A)', default: 0, minimum: 0 },
-      zdfdsl: { type: 'number', title: '最大放电速率', default: 0, minimum: 0 },
-      dcrl: { type: 'number', title: '电池容量(Ah)',  default: 0, minimum: 0 },
-      life: { type: 'number', title: '寿命(年)', default: 0, minimum: 0 },
-      qsmfd: { type: 'number', title: '全寿命放电量(kWh)', default: 0, minimum: 0 },
-      clgs: { type: 'number', title: '串联个数',  default: 0, minimum: 0 },
+      eddy: { type: 'string', title: '额定电压', default: 0, minimum: 0, ui: {
+        // widget: 'string',
+        addOnAfter: 'V',
+        placeholder: '请输入数字',
+      }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
+      xhcfdxl: { type: 'string', title: '循环充放电效率', default: 0, minimum: 0, ui: {
+        addOnAfter: '%',
+        placeholder: '请输入数字',
+      }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
+      zdcdsl: { type: 'string', title: '最大充电速率', default: 0, minimum: 0,
+        format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
+      zdcddl: { type: 'string', title: '最大充电电流', default: 0, minimum: 0, ui: {
+        addOnAfter: 'A',
+        placeholder: '请输入数字',
+      }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
+      zdfdsl: { type: 'string', title: '最大放电速率', default: 0, minimum: 0,
+        format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
+      dcrl: { type: 'string', title: '电池容量(Ah)',  default: 0, minimum: 0, ui: {
+        addOnAfter: 'Ah',
+        placeholder: '请输入数字',
+      }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
+      life: { type: 'string', title: '寿命', default: 0, minimum: 0, ui: {
+        addOnAfter: '年',
+        placeholder: '请输入数字',
+      }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
+      qsmfd: { type: 'string', title: '全寿命放电量', default: 0, minimum: 0, ui: {
+        addOnAfter: 'kWh',
+        placeholder: '请输入数字',
+      }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
+      clgs: { type: 'string', title: '串联个数',  default: 0, minimum: 0, ui: {
+        addOnAfter: '个',
+        placeholder: '请输入数字',
+      }, format: 'regex', pattern: '^0$|^([1-9][0-9]*)$|^((0|([1-9][1-9]*))\.[0-9]+)$'},
       factory: { type: 'string', title: '制造商', maxLength: 140 },
       type: {
         type: 'string',

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ComponentFactoryResolver, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ComponentFactoryResolver, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import {STChange, STColumn, STData} from '@delon/abc';
@@ -40,43 +40,51 @@ export class NetworkSelectBatteryViewComponent implements OnInit, AfterViewInit 
 
   record: any = {};
   i: any = 1;
-  title;
+  @Input() public title;
 
   forceFit = false; // 宽度自适应
   height = 400;
-  data = data;
+  data1;
+  data2;
+  data3;
   scale = scale;
   style = { stroke: '#fff', lineWidth: 1 };
   chart_title_x = {text: '个数', textStyle: {fill: '#515151'} };
-  chart_title_y = {text: '成本(元)', textStyle: {fill: '#515151'}};
+  chart_title_y1 = {text: '初建成本(元)', textStyle: {fill: '#515151'}};
+  chart_title_y2 = {text: '替换成本(元)', textStyle: {fill: '#515151'}};
+  chart_title_y3 = {text: '运维成本(元)', textStyle: {fill: '#515151'}};
 
 
-  url = `/users?total=100`;
-  params = { a: 1, b: 2 };
+  url = `/tinyNet/device/battery/list`;
+  params = { pi: 1, ps: 3 };
   columns: STColumn[] = [
-    { title: '编号', index: 'id.value', type: 'checkbox', fixed: 'left' },
-    { title: '名称', type: 'img', index: 'picture.thumbnail', fixed: 'left', width: '100px' },
-    { title: '制造商', index: 'phone', fixed: 'left', width: '100px' },
-    { title: '额定电压(V)', index: 'phone' },
-    { title: '循环充放电效率(%)', index: 'phone' },
-    { title: '最大充电速率', index: 'phone' },
-    { title: '最大充电电流(A)', index: 'phone' },
-    { title: '最大放电速率', index: 'phone' },
-    { title: '电池容量', index: 'phone' },
-    { title: '寿命', index: 'phone' },
-    { title: '全寿命放电量', index: 'phone' },
-    { title: '类型', index: 'phone' },
-    { title: '串联个数', index: 'phone' },
+    { title: '编号', index: 'id', type: 'checkbox', fixed: 'left', width: '80px' },
+    { title: '名称', index: 'name', fixed: 'left', width: '120px' },
+    { title: '制造商', index: 'factory', fixed: 'left', width: '150px' },
+    { title: '额定电压(V)', index: 'eddy', type: 'number' },
+    { title: '循环充放电效率(%)', index: 'xhcfdxl', type: 'number' },
+    { title: '最大充电速率', index: 'zdcdsl', type: 'number' },
+    { title: '最大充电电流(A)', index: 'zdcddl', type: 'number' },
+    { title: '最大放电速率', index: 'zdfdsl', type: 'number' },
+    { title: '电池容量', index: 'dcrl', type: 'number' },
+    { title: '寿命', index: 'life', type: 'number' },
+    { title: '全寿命放电量', index: 'qsmfd', type: 'number' },
+    { title: '类型', index: 'type' },
+    { title: '串联个数', index: 'clgs', type: 'number' },
   ];
 
-  battery_data = {
-    battery_soc_1 : '0.00',
-    battery_soc_2 : '0.00',
-    battery_soc_3 : '0.00',
-    battery_total_flow : '0.00',
-    battery_back_flow : '0.00',
-    battery_upper_limit : '1.00',
-    battery_lower_limit : '10.00'
+  result_data = {
+    device : null,
+    data : {
+      battery_ids : [],
+      battery_soc_1 : '0.00',
+      battery_soc_2 : '0.00',
+      battery_soc_3 : '0.00',
+      battery_total_flow : '0.00',
+      battery_back_flow : '0.00',
+      battery_upper_limit : '1.00',
+      battery_lower_limit : '10.00'
+    }
   };
 
   constructor(
@@ -88,7 +96,8 @@ export class NetworkSelectBatteryViewComponent implements OnInit, AfterViewInit 
   ) { }
 
   ngOnInit(): void {
-    this.http.get(`/user/${this.record.id}`).subscribe(res => this.i = res);
+    // this.http.get(`/user/${this.record.id}`).subscribe(res => this.i = res);
+    this.result_data.device = this.title;
 
     // fromEvent(window, 'resize').subscribe(function () {
     //   console.log("1");
@@ -100,7 +109,7 @@ export class NetworkSelectBatteryViewComponent implements OnInit, AfterViewInit 
   }
 
   close() {
-    this.modal.destroy();
+    this.modal.destroy(this.result_data);
   }
 
   changeData() {
@@ -118,20 +127,52 @@ export class NetworkSelectBatteryViewComponent implements OnInit, AfterViewInit 
       key: 'cost_type',
       value: 'cost_number',
     });
-    const data1 = dv1.rows;
-    this.data = data1;
+    const dataTemp = dv1.rows;
+    this.data1 = dataTemp;
+    console.log(this.data1);
   }
 
   change(e: STChange) {
-    console.log('change', e);
+
+    if (e.type === 'checkbox') {
+      console.log('change', e);
+      this.result_data.data.battery_ids = [];
+      const array = e.checkbox;
+      let sourceData1: any[] = [];
+      let sourceData2: any[] = [];
+      let sourceData3: any[] = [];
+      const _this = this;
+      array.forEach(function (value) {
+        sourceData1.push({x : value.capacity1, cost_type : value.name, cost_number : value.cjcb1});
+        sourceData1.push({x : value.capacity2, cost_type : value.name, cost_number : value.cjcb2});
+        sourceData1.push({x : value.capacity3, cost_type : value.name, cost_number : value.cjcb3});
+        sourceData1.push({x : value.capacity4, cost_type : value.name, cost_number : value.cjcb4});
+        sourceData2.push({x : value.capacity1, cost_type : value.name, cost_number : value.gxcb1});
+        sourceData2.push({x : value.capacity2, cost_type : value.name, cost_number : value.gxcb2});
+        sourceData2.push({x : value.capacity3, cost_type : value.name, cost_number : value.gxcb3});
+        sourceData2.push({x : value.capacity4, cost_type : value.name, cost_number : value.gxcb4});
+        sourceData3.push({x : value.capacity1, cost_type : value.name, cost_number : value.yxwhcb1});
+        sourceData3.push({x : value.capacity2, cost_type : value.name, cost_number : value.yxwhcb2});
+        sourceData3.push({x : value.capacity3, cost_type : value.name, cost_number : value.yxwhcb3});
+        sourceData3.push({x : value.capacity4, cost_type : value.name, cost_number : value.yxwhcb4});
+        _this.result_data.data.battery_ids.push(value.id);
+      });
+      this.data1 = sourceData1;
+      this.data2 = sourceData2;
+      this.data3 = sourceData3;
+
+      console.log(this.result_data.data.battery_ids);
+
+      // this.result_data.data.battery_id = e.radio.id;
+    }
   }
 
   dataProcess(data: STData[]) {
     return data.map((i: STData, index: number) => {
-      i.disabled = index === 0;
+      i.checked = false;
       return i;
     });
-  }
+  };
 
   /**
    * 在 modal 中使用 G2图表 会有打开modal后图标不渲染的情况，

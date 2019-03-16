@@ -10,7 +10,7 @@ for (let i = 0; i < total; i += 1) {
   list.push({
     id: i + 1,
     name: '光伏' + (i + 1) + '号',
-    edrl: i,  // 额定容量？？实际上这个数据只有0
+    edrl: 0,  // 额定容量？？实际上这个数据只有0
     tyntgl: i * 1.1, // 太阳能透过率（%
     jeys: i * 1.1, // 降噪因数
     gfzltynxsl: i * 1.1, // 光伏阵列的太阳能吸收率（%）

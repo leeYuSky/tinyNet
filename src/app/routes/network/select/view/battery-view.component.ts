@@ -138,23 +138,16 @@ export class NetworkSelectBatteryViewComponent implements OnInit, AfterViewInit 
       console.log('change', e);
       this.result_data.data.battery_ids = [];
       const array = e.checkbox;
-      let sourceData1: any[] = [];
-      let sourceData2: any[] = [];
-      let sourceData3: any[] = [];
+      const sourceData1: any[] = [];
+      const sourceData2: any[] = [];
+      const sourceData3: any[] = [];
       const _this = this;
       array.forEach(function (value) {
-        sourceData1.push({x : value.capacity1, cost_type : value.name, cost_number : value.cjcb1});
-        sourceData1.push({x : value.capacity2, cost_type : value.name, cost_number : value.cjcb2});
-        sourceData1.push({x : value.capacity3, cost_type : value.name, cost_number : value.cjcb3});
-        sourceData1.push({x : value.capacity4, cost_type : value.name, cost_number : value.cjcb4});
-        sourceData2.push({x : value.capacity1, cost_type : value.name, cost_number : value.gxcb1});
-        sourceData2.push({x : value.capacity2, cost_type : value.name, cost_number : value.gxcb2});
-        sourceData2.push({x : value.capacity3, cost_type : value.name, cost_number : value.gxcb3});
-        sourceData2.push({x : value.capacity4, cost_type : value.name, cost_number : value.gxcb4});
-        sourceData3.push({x : value.capacity1, cost_type : value.name, cost_number : value.yxwhcb1});
-        sourceData3.push({x : value.capacity2, cost_type : value.name, cost_number : value.yxwhcb2});
-        sourceData3.push({x : value.capacity3, cost_type : value.name, cost_number : value.yxwhcb3});
-        sourceData3.push({x : value.capacity4, cost_type : value.name, cost_number : value.yxwhcb4});
+        for (let i = 1; i <= 4; i++) {
+          sourceData1.push({x : value['capacity' + i], cost_type : value.name, cost_number : value['cjcb' + i]});
+          sourceData2.push({x : value['capacity' + i], cost_type : value.name, cost_number : value['gxcb' + i]});
+          sourceData3.push({x : value['capacity' + i], cost_type : value.name, cost_number : value['yxwhcb' + i]});
+        }
         _this.result_data.data.battery_ids.push(value.id);
       });
       this.data1 = sourceData1;
@@ -172,7 +165,7 @@ export class NetworkSelectBatteryViewComponent implements OnInit, AfterViewInit 
       i.checked = false;
       return i;
     });
-  };
+  }
 
   /**
    * 在 modal 中使用 G2图表 会有打开modal后图标不渲染的情况，

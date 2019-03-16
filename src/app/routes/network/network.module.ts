@@ -11,6 +11,9 @@ import { ViserModule } from 'viser-ng';
 import { NetworkSelectBatteryLinechartComponent } from './select/view/battery-linechart.component'; // 导入 viser 模块
 import { G2BarModule} from '@delon/chart';
 import { NetworkSelectTurbineComponent } from './select/turbine/turbine.component';
+import { NetworkSelectWindTurbineComponent } from './select/wind-turbine/wind-turbine.component';
+import { NetworkSelectPhotovoltaicComponent } from './select/photovoltaic/photovoltaic.component';
+import { NetworkSelectGeneratorComponent } from './select/generator/generator.component';
 // import {BatteryLinehartHostDirective} from "./select/view/battery-linechart-host.directive";
 
 const COMPONENTS = [
@@ -24,7 +27,10 @@ const COMPONENTS = [
 const COMPONENTS_NOROUNT = [
   NetworkSelectBatteryViewComponent,
   // NetworkSelectBatteryLinechartComponent,
-  NetworkSelectTurbineComponent];
+  NetworkSelectTurbineComponent,
+  NetworkSelectWindTurbineComponent,
+  NetworkSelectPhotovoltaicComponent,
+  NetworkSelectGeneratorComponent];
 
 @NgModule({
   imports: [

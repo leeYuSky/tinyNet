@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
-import {STChange, STColumn, STData} from "@delon/abc";
+import {STChange, STColumn, STData} from '@delon/abc';
 
 @Component({
-  selector: 'app-network-select-turbine',
-  templateUrl: './turbine.component.html',
+  selector: 'app-network-select-photovoltaic',
+  templateUrl: './photovoltaic.component.html',
 })
-export class NetworkSelectTurbineComponent implements OnInit {
+export class NetworkSelectPhotovoltaicComponent implements OnInit {
   record: any = {};
   i: any;
 
@@ -25,17 +25,22 @@ export class NetworkSelectTurbineComponent implements OnInit {
   chart_title_y2 = {text: '替换成本(元)', textStyle: {fill: '#515151'}};
   chart_title_y3 = {text: '运维成本(元)', textStyle: {fill: '#515151'}};
 
-  url = `/tinyNet/device/turbine/list`;
+  url = `/tinyNet/device/photovoltaic/list`;
   params = { pi: 1, ps: 3 };
 
   columns: STColumn[] = [
     { title: '编号', index: 'id', type: 'checkbox', fixed: 'left', width: '80px' },
     { title: '名称', index: 'name', fixed: 'left', width: '120px' },
     { title: '制造商', index: 'factory', fixed: 'left', width: '150px' },
-    { title: '额定水头(m)', index: 'edst', type: 'number' },
-    { title: '额定功率(kW)', index: 'edgl', type: 'number' },
-    { title: '水轮机效率(%)', index: 'sljxl', type: 'number' },
-    { title: '发电机效率(%)', index: 'fdjxl', type: 'number' },
+    { title: '额定容量', index: 'edrl', type: 'number' },
+    { title: '降噪因数', index: 'jeys', type: 'number' },
+    { title: '光伏阵列太阳能吸收率(%)', index: 'gfzltynxsl', type: 'number' },
+    { title: '光伏发电效率(%)', index: 'gffdxl', type: 'number' },
+    { title: 'noct条件下的环境温度(°C)', index: 'noctwd', type: 'number' },
+    { title: '温度系数(%/°C)', index: 'wdxs', type: 'number' },
+    { title: 'noct条件下的光照强度', index: 'noctgz', type: 'number' },
+    { title: '光伏板标准温度(°C)', index: 'gfbbzwd', type: 'number' },
+    { title: 'stc条件下的PV电池温度(°C)', index: 'stcwd', type: 'number' },
     { title: '寿命', index: 'life', type: 'number' },
     { title: '类型', index: 'type' },
   ];
@@ -43,9 +48,13 @@ export class NetworkSelectTurbineComponent implements OnInit {
   result_data = {
     device : null,
     data : {
-      turbine_ids : [],
-      turbine_upper_limit : '1.00',
-      turbine_lower_limit : '10.00'
+      photovoltaic_ids : [],
+      photovoltaic_upper_limit : '1.00',
+      photovoltaic_lower_limit : '10.00',
+      photovoltaic_fwj : '20.00',  // 方位角（°）
+      photovoltaic_qxj : '22.00', // 倾斜角（°）
+      photovoltaic_dmfsl : '20.00', // 地面反射率
+      photovoltaic_tyntgl : '90.00' // 太阳能通过率
     }
   };
 
@@ -67,7 +76,7 @@ export class NetworkSelectTurbineComponent implements OnInit {
 
     if (e.type === 'checkbox') {
       console.log('change', e);
-      this.result_data.data.turbine_ids = [];
+      this.result_data.data.photovoltaic_ids = [];
       const array = e.checkbox;
       const sourceData1: any[] = [];
       const sourceData2: any[] = [];
@@ -79,13 +88,14 @@ export class NetworkSelectTurbineComponent implements OnInit {
           sourceData2.push({x : value['capacity' + i], cost_type : value.name, cost_number : value['gxcb' + i]});
           sourceData3.push({x : value['capacity' + i], cost_type : value.name, cost_number : value['yxwhcb' + i]});
         }
-        _this.result_data.data.turbine_ids.push(value.id);
+
+        _this.result_data.data.photovoltaic_ids.push(value.id);
       });
       this.data1 = sourceData1;
       this.data2 = sourceData2;
       this.data3 = sourceData3;
 
-      console.log(this.result_data.data.turbine_ids);
+      console.log(this.result_data.data.photovoltaic_ids);
 
       // this.result_data.data.battery_id = e.radio.id;
     }

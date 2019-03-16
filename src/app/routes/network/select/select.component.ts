@@ -2,7 +2,10 @@ import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {_HttpClient, ModalHelper} from '@delon/theme';
 import { NetworkSelectBatteryViewComponent } from './view/battery-view.component';
 import {NzModalService} from 'ng-zorro-antd';
-import {NetworkSelectTurbineComponent} from "./turbine/turbine.component";
+import {NetworkSelectTurbineComponent} from './turbine/turbine.component';
+import {NetworkSelectWindTurbineComponent} from './wind-turbine/wind-turbine.component';
+import {NetworkSelectPhotovoltaicComponent} from './photovoltaic/photovoltaic.component';
+import {NetworkSelectGeneratorComponent} from "./generator/generator.component";
 
 
 
@@ -23,12 +26,12 @@ export class NetworkSelectComponent implements OnInit {
   select_device_data = {
     dianwang : { data : null },
     guangziyuan : { data : null },
-    guangfuzhenlie : { data : null },
+    photovoltaic : { data : null },
     fengziyuan : { data : null },
-    fenglifadianji : { data : null },
+    wind_turbines : { data : null },
     shuiziyuan : { data : null },
     turbine : { data : null },
-    changguifadianji : { data : null },
+    generator : { data : null },
     ranqilunji : { data : null },
     battery : { data : null },
     dianfuhe : { data : null },
@@ -67,6 +70,15 @@ export class NetworkSelectComponent implements OnInit {
         break;
       case 'shuilifadianji':
         temp = NetworkSelectTurbineComponent;
+        break;
+      case 'fenglifadianji':
+        temp = NetworkSelectWindTurbineComponent;
+        break;
+      case 'guangfuzhenlie':
+        temp = NetworkSelectPhotovoltaicComponent;
+        break;
+      case 'changguifadianji':
+        temp = NetworkSelectGeneratorComponent;
         break;
       default:
         break;
@@ -123,6 +135,28 @@ export class NetworkSelectComponent implements OnInit {
             } else {
               console.log('数据不合法');
             }
+            break;
+          case 'fenglifadianji':
+            if (result['data']['wind_turbines_ids'].length > 0) {
+              this.select_device_data.wind_turbines.data = result['data'];
+            } else {
+              console.log('数据不合法');
+            }
+            break;
+          case 'guangfuzhenlie':
+            if (result['data']['photovoltaic_ids'].length > 0) {
+              this.select_device_data.photovoltaic.data = result['data'];
+            } else {
+              console.log('数据不合法');
+            }
+            break;
+          case 'changguifadianji':
+            if (result['data']['generator_ids'].length > 0) {
+              this.select_device_data.generator.data = result['data'];
+            } else {
+              console.log('数据不合法');
+            }
+            break;
           default:
             break;
         }

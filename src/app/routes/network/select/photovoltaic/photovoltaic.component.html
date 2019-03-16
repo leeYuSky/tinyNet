@@ -46,7 +46,7 @@
         <nz-form-label nzSpan="24"  nzFor="battery_upper_limit">上限</nz-form-label>
         <nz-form-control nzSpan="24">
           <nz-input-group  nzAddOnAfter="台" style="width:80%">
-            <input type="text" name="battery_upper_limit" id="turbine_upper_limit" [(ngModel)]="result_data.data.turbine_upper_limit" nz-input placeholder="0.00">
+            <input type="text" name="battery_upper_limit" id="photovoltaic_upper_limit" [(ngModel)]="result_data.data.photovoltaic_upper_limit" nz-input placeholder="0.00">
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -56,10 +56,63 @@
         <nz-form-label nzSpan="24"  nzFor="battery_lower_limit">下限</nz-form-label>
         <nz-form-control nzSpan="24">
           <nz-input-group  nzAddOnAfter="台" style="width:80%">
-            <input type="text" name="battery_lower_limit" id="turbine_lower_limit" [(ngModel)]="result_data.data.turbine_lower_limit" nz-input placeholder="0.00">
+            <input type="text" name="battery_lower_limit" id="photovoltaic_lower_limit" [(ngModel)]="result_data.data.photovoltaic_lower_limit" nz-input placeholder="0.00">
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
     </div>
+  </div>
+</nz-card>
+
+<nz-card  nzTitle="设备参数">
+  <div nz-row >
+
+    <div nz-col [nzXs]="24" [nzMd]="8">
+      <nz-form-item>
+        <nz-form-label nzSpan="24"  nzFor="battery_upper_limit">方位角</nz-form-label>
+        <nz-form-control nzSpan="24">
+          <nz-input-group  nzAddOnAfter="°" style="width:80%">
+            <input type="text" name="battery_upper_limit" id="photovoltaic_fwj" [(ngModel)]="result_data.data.photovoltaic_fwj" nz-input placeholder="0.00">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col [nzXs]="24" [nzMd]="8">
+      <nz-form-item>
+        <nz-form-label nzSpan="24"  nzFor="battery_lower_limit">倾斜角</nz-form-label>
+        <nz-form-control nzSpan="24">
+          <nz-input-group  nzAddOnAfter="°" style="width:80%">
+            <input type="text" name="battery_lower_limit" id="photovoltaic_qxj" [(ngModel)]="result_data.data.photovoltaic_qxj" nz-input placeholder="0.00">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col [nzXs]="24" [nzMd]="8">
+      <nz-form-item>
+        <nz-form-label nzSpan="24"  nzFor="battery_upper_limit">地面反射率</nz-form-label>
+        <nz-form-control nzSpan="24">
+          <nz-input-group  nzAddOnAfter="%" style="width:80%">
+            <input type="text" name="battery_upper_limit" id="photovoltaic_dmfsl" [(ngModel)]="result_data.data.photovoltaic_dmfsl" nz-input placeholder="0.00">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+  </div>
+
+  <div nz-row >
+    <div nz-col [nzXs]="24" [nzMd]="8">
+      <nz-form-item>
+        <nz-form-label nzSpan="24"  nzFor="battery_upper_limit">太阳能通过率</nz-form-label>
+        <nz-form-control nzSpan="24">
+          <nz-input-group  nzAddOnAfter="%" style="width:80%">
+            <input type="text" name="battery_upper_limit" id="photovoltaic_tyntgl" [(ngModel)]="result_data.data.photovoltaic_tyntgl" nz-input placeholder="0.00">
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
   </div>
 </nz-card>

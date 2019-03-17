@@ -96,7 +96,7 @@ export class NetworkSelectWindTurbineComponent implements OnInit {
           sourceData4.push({x : i, cost_type : value.name, cost_number : value['fs' + i]});
           sourceData5.push({x : i, cost_type : value.name, cost_number : value['gl' + i]});
         }
-        _this.result_data.data.wind_turbines_ids.push(value.id);
+        _this.result_data.data.wind_turbines_ids.push(value);
       });
       this.data1 = sourceData1;
       this.data2 = sourceData2;

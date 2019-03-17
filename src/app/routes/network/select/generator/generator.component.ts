@@ -100,7 +100,7 @@ export class NetworkSelectGeneratorComponent implements OnInit {
           sourceData5.push({x : i, cost_type : value.name, cost_number : value['rlxh' + i]});
         }
 
-        _this.result_data.data.generator_ids.push(value.id);
+        _this.result_data.data.generator_ids.push(value);
       });
       this.data1 = sourceData1;
       this.data2 = sourceData2;

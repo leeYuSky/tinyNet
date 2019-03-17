@@ -5,7 +5,7 @@ import {NzModalService} from 'ng-zorro-antd';
 import {NetworkSelectTurbineComponent} from './turbine/turbine.component';
 import {NetworkSelectWindTurbineComponent} from './wind-turbine/wind-turbine.component';
 import {NetworkSelectPhotovoltaicComponent} from './photovoltaic/photovoltaic.component';
-import {NetworkSelectGeneratorComponent} from "./generator/generator.component";
+import {NetworkSelectGeneratorComponent} from './generator/generator.component';
 
 
 
@@ -48,6 +48,9 @@ export class NetworkSelectComponent implements OnInit {
     xurezhuangzhi : { data : null }
   };
 
+  loading = false;
+  list_data = [];
+
   i = 1;
 
   constructor(
@@ -59,6 +62,50 @@ export class NetworkSelectComponent implements OnInit {
   ngOnInit() {
     console.log('NetworkSelectComponent init');
     console.log(this.checkOptionsSet);
+  }
+
+  /**
+   * 删除 list 列表的 item
+   *
+   */
+  deleteItem(item: any): void {
+    console.log(item);
+    const temp = [];
+    this.list_data.forEach(function (value) {
+      if (value['device'] !== item['device']) {
+        temp.push(value);
+      }
+    });
+    this.loading = true;
+    setTimeout(() => {
+      this.list_data = temp;
+      this.loading = false;
+    }, 100);
+    this.select_device_data[item['device']]['data'] = null;
+  }
+
+  /**
+   * 查看 item 详情
+   *
+   */
+  viewItem(item: any): void {
+    console.log(item);
+  }
+
+  /**
+   * 更新列表
+   * @param obj 列表传入数据
+   */
+  updateTheList(obj: any): void {
+    this.loading = true;
+    setTimeout(() => {
+      this.list_data.push(obj);
+      this.loading = false;
+    });
+  }
+
+  cancel(): void {
+    console.log('取消删除');
   }
 
   hello(name) {
@@ -125,6 +172,12 @@ export class NetworkSelectComponent implements OnInit {
           case 'dianchi':
             if (result['data']['battery_ids'].length > 0) {
               this.select_device_data.battery.data = result['data'];
+              this.updateTheList({
+                title: '电池',
+                device: 'battery',
+                avatar: './assets/device/icon-battery.png',
+                description: '您已经选择了 ' + result['data']['battery_ids'].length + ' 个电池。',
+              });
             } else {
               console.log('数据不合法');
             }
@@ -132,6 +185,12 @@ export class NetworkSelectComponent implements OnInit {
           case 'shuilifadianji':
             if (result['data']['turbine_ids'].length > 0) {
               this.select_device_data.turbine.data = result['data'];
+              this.updateTheList({
+                title: '水力发电机',
+                device: 'turbine',
+                avatar: './assets/device/icon-turbine.png',
+                description: '您已经选择了 ' + result['data']['turbine_ids'].length + ' 台水力发电机。',
+              });
             } else {
               console.log('数据不合法');
             }
@@ -139,6 +198,12 @@ export class NetworkSelectComponent implements OnInit {
           case 'fenglifadianji':
             if (result['data']['wind_turbines_ids'].length > 0) {
               this.select_device_data.wind_turbines.data = result['data'];
+              this.updateTheList({
+                title: '风力发电机',
+                device: 'wind_turbines',
+                avatar: './assets/device/icon-wind-turbine.png',
+                description: '您已经选择了 ' + result['data']['wind_turbines_ids'].length + ' 台风力发电机。',
+              });
             } else {
               console.log('数据不合法');
             }
@@ -146,6 +211,12 @@ export class NetworkSelectComponent implements OnInit {
           case 'guangfuzhenlie':
             if (result['data']['photovoltaic_ids'].length > 0) {
               this.select_device_data.photovoltaic.data = result['data'];
+              this.updateTheList({
+                title: '光伏阵列',
+                device: 'photovoltaic',
+                avatar: './assets/device/icon-photovoltaic.png',
+                description: '您已经选择了 ' + result['data']['photovoltaic_ids'].length + ' 台光伏发电机。',
+              });
             } else {
               console.log('数据不合法');
             }
@@ -153,6 +224,12 @@ export class NetworkSelectComponent implements OnInit {
           case 'changguifadianji':
             if (result['data']['generator_ids'].length > 0) {
               this.select_device_data.generator.data = result['data'];
+              this.updateTheList({
+                title: '常规发电机',
+                device: 'generator',
+                avatar: './assets/device/icon-generator.png',
+                description: '您已经选择了 ' + result['data']['generator_ids'].length + ' 台常规发电机。',
+              });
             } else {
               console.log('数据不合法');
             }

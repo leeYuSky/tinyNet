@@ -89,7 +89,7 @@ export class NetworkSelectPhotovoltaicComponent implements OnInit {
           sourceData3.push({x : value['capacity' + i], cost_type : value.name, cost_number : value['yxwhcb' + i]});
         }
 
-        _this.result_data.data.photovoltaic_ids.push(value.id);
+        _this.result_data.data.photovoltaic_ids.push(value);
       });
       this.data1 = sourceData1;
       this.data2 = sourceData2;

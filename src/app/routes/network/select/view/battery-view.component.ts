@@ -148,7 +148,7 @@ export class NetworkSelectBatteryViewComponent implements OnInit, AfterViewInit 
           sourceData2.push({x : value['capacity' + i], cost_type : value.name, cost_number : value['gxcb' + i]});
           sourceData3.push({x : value['capacity' + i], cost_type : value.name, cost_number : value['yxwhcb' + i]});
         }
-        _this.result_data.data.battery_ids.push(value.id);
+        _this.result_data.data.battery_ids.push(value);
       });
       this.data1 = sourceData1;
       this.data2 = sourceData2;

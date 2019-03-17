@@ -101,7 +101,7 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    console.log('NetworkDesignComponent init');
+    // console.log('NetworkDesignComponent init');
     this.zoomSvg = svgPanZoom('#xianlutu', {
       zoomEnabled: true,
       controlIconsEnabled: true,
@@ -119,7 +119,7 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     this.checkOptionsEmitter.emit(this.current_checkOptions);
     this.radioValueEmitter.emit(this.radioValue);
     this.allCheckOptionsEmitter.emit(this.checkOptions);
-    console.log('NetworkDesignComponent Destroy');
+    // console.log('NetworkDesignComponent Destroy');
   }
 
 
@@ -147,7 +147,7 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
         if (this.checkOptions[this.checkOptionsMapping[a - 1]][b - 1]['checked'] === true) {
           this.checkOptions[this.checkOptionsMapping[a - 1]][b - 1]['checked'] = false;
           this.current_checkOptions.delete(value);
-          console.log(this.current_checkOptions);
+          // console.log(this.current_checkOptions);
         }
       });
       // const c = this.parseValue('4_1');
@@ -174,13 +174,13 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
         item.checked = true;
         this.current_checkOptions.add(item.value);
       });
-      console.log(this.current_checkOptions);
+      // console.log(this.current_checkOptions);
     } else {
       this.checkOptions.checkOptionsOne_load.forEach(item => {
         item.checked = false;
         this.current_checkOptions.delete(item.value);
       });
-      console.log(this.current_checkOptions);
+      // console.log(this.current_checkOptions);
     }
   }
 
@@ -291,7 +291,7 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     } else {
       this.indeterminate_load = true;
     }
-    console.log(this.current_checkOptions);
+    // console.log(this.current_checkOptions);
   }
 
   /**
@@ -304,13 +304,13 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
         item.checked = true;
         this.current_checkOptions.add(item.value);
       });
-      console.log(this.current_checkOptions);
+      // console.log(this.current_checkOptions);
     } else {
       this.checkOptions.checkOptionsOne_renewable_energy.forEach(item => {
         item.checked = false;
         this.current_checkOptions.delete(item.value);
       });
-      console.log(this.current_checkOptions);
+      // console.log(this.current_checkOptions);
     }
   }
 
@@ -329,7 +329,7 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     } else {
       this.indeterminate_renewable_energy = true;
     }
-    console.log(this.current_checkOptions);
+    // console.log(this.current_checkOptions);
   }
 
   /**
@@ -342,13 +342,13 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
         item.checked = true;
         this.current_checkOptions.add(item.value);
       });
-      console.log(this.current_checkOptions);
+      // console.log(this.current_checkOptions);
     } else {
       this.checkOptions.checkOptionsOne_stored_energy.forEach(item => {
         item.checked = false;
         this.current_checkOptions.delete(item.value);
       });
-      console.log(this.current_checkOptions);
+      // console.log(this.current_checkOptions);
     }
   }
 
@@ -367,7 +367,7 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     } else {
       this.indeterminate_stored_energy = true;
     }
-    console.log(this.current_checkOptions);
+    // console.log(this.current_checkOptions);
   }
 
   /**
@@ -409,7 +409,7 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
       }
     }
 
-    console.log(this.current_checkOptions);
+    // console.log(this.current_checkOptions);
   }
 
   /**
@@ -422,13 +422,13 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
         item.checked = true;
         this.current_checkOptions.add(item.value);
       });
-      console.log(this.current_checkOptions);
+      // console.log(this.current_checkOptions);
     } else {
       this.checkOptions.checkOptionsOne_component.forEach(item => {
         item.checked = false;
         this.current_checkOptions.delete(item.value);
       });
-      console.log(this.current_checkOptions);
+      // console.log(this.current_checkOptions);
     }
   }
 
@@ -478,7 +478,7 @@ export class NetworkDesignComponent implements OnInit, OnDestroy {
     } else {
       this.indeterminate_component = true;
     }
-    console.log(this.current_checkOptions);
+    // console.log(this.current_checkOptions);
   }
 
   /**

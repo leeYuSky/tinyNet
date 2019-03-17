@@ -5,6 +5,7 @@ import { _HttpClient } from '@delon/theme';
 import { NetworkDesignComponent } from '../design/design.component';
 import { ReuseTabService } from '@delon/abc';
 import {NzModalService} from "ng-zorro-antd";
+import {NetworkControlComponent} from "../control/control.component";
 
 @Component({
   selector: 'app-network-generate-project',
@@ -14,10 +15,19 @@ import {NzModalService} from "ng-zorro-antd";
 export class NetworkGenerateProjectComponent implements OnInit {
 
   @ViewChild(NetworkDesignComponent) networkDesignComponent: NetworkDesignComponent;
+  @ViewChild(NetworkControlComponent) networkControlComponent: NetworkControlComponent;
 
+  // design页面 Emitter 传来的参数
   checkOptions: any;
   radioValue: any;
   allCheckOptions: any;
+
+  // select页面 Emitter 传来的参数
+  selectDeviceData: any;
+  listData = [];
+
+  // control界面 Emitter 传来的参数
+  controlFormData: any;
 
   current = 0;
 
@@ -112,7 +122,12 @@ export class NetworkGenerateProjectComponent implements OnInit {
   done(): void {
     this.current += 1;
     this.changeContent();
-    console.log('done');
+    const data = {
+      deviceData : this.selectDeviceData,
+      formData : this.networkControlComponent.form_data
+    };
+    console.log('方案创建完成');
+    console.log(JSON.stringify(data));
   }
 
   changeContent(): void {
@@ -138,15 +153,37 @@ export class NetworkGenerateProjectComponent implements OnInit {
 
   getCheckOptions(event) {
     this.checkOptions = event;
-    console.log(this.checkOptions);
+    // console.log(this.checkOptions);
   }
 
   getRadioValue(event) {
     this.radioValue = event;
-    console.log(this.radioValue);
+    // console.log(this.radioValue);
   }
 
   getAllCheckOptions(event) {
     this.allCheckOptions = event;
+  }
+
+  getSelectDeviceData(event) {
+    if (this.current === 0) {
+      this.selectDeviceData = null;
+    } else {
+      this.selectDeviceData = event;
+      // console.log('NetworkGenerateProjectComponent - ');
+      // console.log(this.selectDeviceData);
+    }
+  }
+
+  getListData(event) {
+    if (this.current === 0) {
+      this.listData = [];
+    } else {
+      this.listData = event;
+    }
+  }
+
+  getControlFormData(event) {
+    this.controlFormData = event;
   }
 }

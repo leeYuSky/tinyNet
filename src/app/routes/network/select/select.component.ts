@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {_HttpClient, ModalHelper} from '@delon/theme';
 import { NetworkSelectBatteryViewComponent } from './view/battery-view.component';
 import {NzModalService} from 'ng-zorro-antd';
@@ -14,13 +14,21 @@ import {NetworkSelectGeneratorComponent} from './generator/generator.component';
   templateUrl: './select.component.html',
   styleUrls : ['./select.component.css']
 })
-export class NetworkSelectComponent implements OnInit {
+export class NetworkSelectComponent implements OnInit, OnDestroy {
 
   @Input() radioValue: any;
 
   @Input() checkOptionsSet: Set<string>;
 
   @Input() checkOptions: any;
+
+  @Input() defaultSelectDeviceData: any;
+
+  @Input() defaultListData: any;
+
+  @Output() selectDeviceDataEmitter = new EventEmitter<any>();
+
+  @Output() listDataEmitter = new EventEmitter<any>();
 
 
   select_device_data = {
@@ -61,7 +69,17 @@ export class NetworkSelectComponent implements OnInit {
 
   ngOnInit() {
     console.log('NetworkSelectComponent init');
-    console.log(this.checkOptionsSet);
+    // console.log(this.checkOptionsSet);
+    if (this.defaultListData.length > 0) {
+      this.list_data = this.defaultListData;
+      this.select_device_data = this.defaultSelectDeviceData;
+    }
+  }
+
+  ngOnDestroy() {
+    this.selectDeviceDataEmitter.emit(this.select_device_data);
+    this.listDataEmitter.emit(this.list_data);
+    console.log('NetworkSelectComponent Destroy');
   }
 
   /**
@@ -109,7 +127,7 @@ export class NetworkSelectComponent implements OnInit {
   }
 
   hello(name) {
-    console.log(name);
+    // console.log(name);
     let temp;
     switch (name) {
       case 'dianchi':
@@ -238,7 +256,7 @@ export class NetworkSelectComponent implements OnInit {
             break;
         }
       }
-      console.log(this.select_device_data);
+      // console.log(this.select_device_data);
     });
   }
 

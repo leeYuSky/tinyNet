@@ -38,13 +38,18 @@
 <div class="steps-content" *ngIf="current == 1">
   <app-network-select [checkOptionsSet]="checkOptions"
                       [radioValue]="radioValue"
-                      [checkOptions]="allCheckOptions">
+                      [checkOptions]="allCheckOptions"
+                      [defaultSelectDeviceData]="selectDeviceData"
+                      [defaultListData]="listData"
+                      (selectDeviceDataEmitter)="getSelectDeviceData($event)"
+                      (listDataEmitter)="getListData($event)">
 
   </app-network-select>
 </div>
 
 <div class="steps-content" *ngIf="current == 2">
-  <app-network-control [radioValue]="radioValue">
+  <app-network-control [radioValue]="radioValue"
+                       (controlFormDataEmitter)="getControlFormData($event)">
 
   </app-network-control>
 </div>

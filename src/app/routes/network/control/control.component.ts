@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 
 @Component({
@@ -6,9 +6,11 @@ import { _HttpClient } from '@delon/theme';
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.css']
 })
-export class NetworkControlComponent implements OnInit {
+export class NetworkControlComponent implements OnInit, OnDestroy {
 
   @Input() radioValue: string;
+
+  @Output() controlFormDataEmitter = new EventEmitter<any>();
 
   strategy_internal = true;
   strategy_pollution = true;
@@ -58,6 +60,11 @@ export class NetworkControlComponent implements OnInit {
   constructor(private http: _HttpClient) { }
 
   ngOnInit() { }
+
+  ngOnDestroy() {
+    this.controlFormDataEmitter.emit(this.form_data);
+    console.log('NetworkControlComponent Destroy');
+  }
 
   getData() {
     console.log(JSON.stringify(this.form_data));

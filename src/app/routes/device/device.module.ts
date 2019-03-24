@@ -14,13 +14,17 @@ import { DeviceTurbineDetailEditComponent } from './turbine-detail/edit/edit.com
 import { DevicePhotovoltaicDetailComponent } from './photovoltaic-detail/photovoltaic-detail.component';
 import { DevicePhotovoltaicDetailViewComponent } from './photovoltaic-detail/view/view.component';
 import { DevicePhotovoltaicDetailEditComponent } from './photovoltaic-detail/edit/edit.component';
+import { DeviceGeneratorDetailComponent } from './generator-detail/generator-detail.component';
+import { DeviceGeneratorDetailViewComponent } from './generator-detail/view/view.component';
+import { DeviceGeneratorDetailEditComponent } from './generator-detail/edit/edit.component';
 
 const COMPONENTS = [
   DeviceBatteryDetailComponent,
   DeviceWindGeneratorDetailComponent
 ,
   DeviceTurbineDetailComponent,
-  DevicePhotovoltaicDetailComponent];
+  DevicePhotovoltaicDetailComponent,
+  DeviceGeneratorDetailComponent];
 const COMPONENTS_NOROUNT = [
   DeviceBatteryDetailViewComponent,
   DeviceBatteryDetailEditComponent,
@@ -29,7 +33,9 @@ const COMPONENTS_NOROUNT = [
   DeviceTurbineDetailViewComponent,
   DeviceTurbineDetailEditComponent,
   DevicePhotovoltaicDetailViewComponent,
-  DevicePhotovoltaicDetailEditComponent];
+  DevicePhotovoltaicDetailEditComponent,
+  DeviceGeneratorDetailViewComponent,
+  DeviceGeneratorDetailEditComponent];
 
 @NgModule({
   imports: [

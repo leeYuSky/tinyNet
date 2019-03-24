@@ -135,6 +135,11 @@ export class StartupService {
                 link: '/device/photovoltaicDetail',
                 // reuse: false,
               },
+              {
+                text: '常规发电机',
+                link: '/device/generatorDetail',
+                // reuse: false,
+              },
             ]
           },
           {

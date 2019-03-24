@@ -4,12 +4,14 @@ import { DeviceBatteryDetailComponent } from './battery-detail/battery-detail.co
 import { DeviceWindGeneratorDetailComponent } from './wind-generator-detail/wind-generator-detail.component';
 import { DeviceTurbineDetailComponent } from './turbine-detail/turbine-detail.component';
 import { DevicePhotovoltaicDetailComponent } from './photovoltaic-detail/photovoltaic-detail.component';
+import { DeviceGeneratorDetailComponent } from './generator-detail/generator-detail.component';
 
 const routes: Routes = [
   { path: 'batteryDetail', component: DeviceBatteryDetailComponent },
   { path: 'windGeneratorDetail', component: DeviceWindGeneratorDetailComponent },
   { path: 'turbineDetail', component: DeviceTurbineDetailComponent },
-  { path: 'photovoltaicDetail', component: DevicePhotovoltaicDetailComponent }];
+  { path: 'photovoltaicDetail', component: DevicePhotovoltaicDetailComponent },
+  { path: 'generatorDetail', component: DeviceGeneratorDetailComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

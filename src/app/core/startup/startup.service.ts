@@ -125,6 +125,11 @@ export class StartupService {
                 link: '/device/windGeneratorDetail',
                 // reuse: false,
               },
+              {
+                text: '水力发电机',
+                link: '/device/turbineDetail',
+                // reuse: false,
+              },
             ]
           },
           {

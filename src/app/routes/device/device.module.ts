@@ -11,19 +11,25 @@ import { DeviceWindGeneratorDetailEditComponent } from './wind-generator-detail/
 import { DeviceTurbineDetailComponent } from './turbine-detail/turbine-detail.component';
 import { DeviceTurbineDetailViewComponent } from './turbine-detail/view/view.component';
 import { DeviceTurbineDetailEditComponent } from './turbine-detail/edit/edit.component';
+import { DevicePhotovoltaicDetailComponent } from './photovoltaic-detail/photovoltaic-detail.component';
+import { DevicePhotovoltaicDetailViewComponent } from './photovoltaic-detail/view/view.component';
+import { DevicePhotovoltaicDetailEditComponent } from './photovoltaic-detail/edit/edit.component';
 
 const COMPONENTS = [
   DeviceBatteryDetailComponent,
   DeviceWindGeneratorDetailComponent
 ,
-  DeviceTurbineDetailComponent];
+  DeviceTurbineDetailComponent,
+  DevicePhotovoltaicDetailComponent];
 const COMPONENTS_NOROUNT = [
   DeviceBatteryDetailViewComponent,
   DeviceBatteryDetailEditComponent,
   DeviceWindGeneratorDetailViewComponent,
   DeviceWindGeneratorDetailEditComponent,
   DeviceTurbineDetailViewComponent,
-  DeviceTurbineDetailEditComponent];
+  DeviceTurbineDetailEditComponent,
+  DevicePhotovoltaicDetailViewComponent,
+  DevicePhotovoltaicDetailEditComponent];
 
 @NgModule({
   imports: [

@@ -6,6 +6,8 @@ import { DeviceWindGeneratorDetailComponent } from './wind-generator-detail/wind
 import { DeviceBatteryDetailViewComponent } from './battery-detail/view/view.component';
 import { DeviceBatteryDetailEditComponent } from './battery-detail/edit/edit.component';
 import { ViserModule } from 'viser-ng';
+import { DeviceWindGeneratorDetailViewComponent } from './wind-generator-detail/view/view.component';
+import { DeviceWindGeneratorDetailEditComponent } from './wind-generator-detail/edit/edit.component';
 
 const COMPONENTS = [
   DeviceBatteryDetailComponent,
@@ -13,7 +15,9 @@ const COMPONENTS = [
 ];
 const COMPONENTS_NOROUNT = [
   DeviceBatteryDetailViewComponent,
-  DeviceBatteryDetailEditComponent];
+  DeviceBatteryDetailEditComponent,
+  DeviceWindGeneratorDetailViewComponent,
+  DeviceWindGeneratorDetailEditComponent];
 
 @NgModule({
   imports: [

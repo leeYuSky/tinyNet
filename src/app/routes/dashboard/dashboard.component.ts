@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { ReuseTabService } from '@delon/abc';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -12,7 +13,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private http: _HttpClient,
-    private reuseTabService: ReuseTabService
+    private reuseTabService: ReuseTabService,
+    private router: Router
   ) {
 
   }
@@ -27,6 +29,28 @@ export class DashboardComponent implements OnInit {
   }
   _onReuseDestroy() {
     console.log('_onReuseDestroy');
+  }
+
+  clickToDevice(deviceName: string) {
+    switch (deviceName) {
+      case 'battery':
+        this.router.navigateByUrl('/device/batteryDetail');
+        break;
+      case 'wind-turbine':
+        this.router.navigateByUrl('/device/windGeneratorDetail');
+        break;
+      case 'turbine':
+        this.router.navigateByUrl('/device/turbineDetail');
+        break;
+      case 'photovoltaic':
+        this.router.navigateByUrl('/device/photovoltaicDetail');
+        break;
+      case 'generator':
+        this.router.navigateByUrl('/device/generatorDetail');
+        break;
+      default:
+        break;
+    }
   }
 
 

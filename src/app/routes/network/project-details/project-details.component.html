@@ -1,0 +1,84 @@
+<page-header [autoBreadcrumb]="false" title="方案详情">
+  <ng-template #logo>
+    <img src="https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png">
+  </ng-template>
+  <ng-template #action>
+    <button nz-button nzType="primary" (click)="generateNewProject()">新建方案</button>
+  </ng-template>
+</page-header>
+<div>
+  <nz-card [nzBordered]="false">
+    <div nz-row>
+
+      <strong>项目类别 :</strong>
+      <nz-tag style="margin-left: 24px" nzMode="checkable" [(nzChecked)]="tagCheck1" (nzCheckedChange)="checkChange($event,1)">全部</nz-tag>
+      <nz-tag style="margin-left: 24px" nzMode="checkable" [(nzChecked)]="tagCheck2" (nzCheckedChange)="checkChange($event,2)">未完成</nz-tag>
+      <nz-tag style="margin-left: 24px" nzMode="checkable" [(nzChecked)]="tagCheck3" (nzCheckedChange)="checkChange($event,3)">已完成</nz-tag>
+
+    </div>
+  </nz-card>
+</div>
+
+<div>
+  <div nz-row nzGutter="24">
+
+    <div nz-col nzSpan="6">
+      <nz-card [nzCover]="coverTemplate" [nzActions]="[actionSetting,actionEdit,actionEllipsis]" [nzHoverable]="true">
+        <nz-card-meta [nzTitle]="titleTemplate" [nzDescription]="descriptionTemplate"></nz-card-meta>
+        <div>
+          <span class="text-grey">
+            创建于 2018-04-13 23:59:59
+          </span>
+        </div>
+      </nz-card>
+      <ng-template #titleTemplate>
+        <div style="color: #1890ff;"><nz-badge nzStatus="error"></nz-badge>刘敬成方案</div>
+      </ng-template>
+      <ng-template #descriptionTemplate>
+        <p>该离网方案包含17个设备，共计5种设备类型。</p>
+      </ng-template>
+      <ng-template #coverTemplate>
+        <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"/>
+      </ng-template>
+      <ng-template #actionSetting>
+        <i class="anticon anticon-file-text"></i>
+      </ng-template>
+      <ng-template #actionEdit>
+        <i class="anticon anticon-delete"></i>
+      </ng-template>
+      <ng-template #actionEllipsis>
+        <i class="anticon anticon-ellipsis"></i>
+      </ng-template>
+    </div>
+
+    <div *ngFor="let item of items" nz-col nzSpan="6">
+      <nz-card [nzCover]="coverTemplate" [nzActions]="[actionSetting,actionEdit,actionEllipsis]" [nzHoverable]="true">
+        <nz-card-meta [nzTitle]="titleTemplate" [nzDescription]="descriptionTemplate"></nz-card-meta>
+        <div>
+          <span class="text-grey">
+            创建于 2018-04-13 23:59:59
+          </span>
+        </div>
+      </nz-card>
+      <ng-template #titleTemplate{{item}}>
+        <div style="color: #1890ff;"><nz-badge nzStatus="error"></nz-badge>刘敬成方案{{item}}</div>
+      </ng-template>
+      <ng-template #descriptionTemplate>
+        <p>该离网方案包含17个设备，共计5种设备类型。</p>
+      </ng-template>
+      <ng-template #coverTemplate{{item}}>
+        <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"/>
+      </ng-template>
+      <ng-template #actionSetting{{item}}>
+        <i class="anticon anticon-file-text"></i>
+      </ng-template>
+      <ng-template #actionEdit{{item}}>
+        <i class="anticon anticon-delete"></i>
+      </ng-template>
+      <ng-template #actionEllipsis{{item}}>
+        <i class="anticon anticon-ellipsis"></i>
+      </ng-template>
+    </div>
+
+  </div>
+</div>

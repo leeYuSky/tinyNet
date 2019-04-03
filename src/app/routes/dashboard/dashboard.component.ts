@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.reuseTabService.closable = false;
+    this.reuseTabService.title = '工作台';
   }
 
 

@@ -14,6 +14,7 @@ import { NetworkSelectTurbineComponent } from './select/turbine/turbine.componen
 import { NetworkSelectWindTurbineComponent } from './select/wind-turbine/wind-turbine.component';
 import { NetworkSelectPhotovoltaicComponent } from './select/photovoltaic/photovoltaic.component';
 import { NetworkSelectGeneratorComponent } from './select/generator/generator.component';
+import { NetworkProjectDetailsComponent } from './project-details/project-details.component';
 // import {BatteryLinehartHostDirective} from "./select/view/battery-linechart-host.directive";
 
 const COMPONENTS = [
@@ -22,8 +23,8 @@ const COMPONENTS = [
   NetworkSelectComponent,
   NetworkControlComponent,
   NetworkResultComponent,
-  // BatteryLinehartHostDirective
-];
+  // BatteryLinehartHostDirective,
+  NetworkProjectDetailsComponent];
 const COMPONENTS_NOROUNT = [
   NetworkSelectBatteryViewComponent,
   // NetworkSelectBatteryLinechartComponent,

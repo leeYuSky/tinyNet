@@ -84,7 +84,7 @@ export class StartupService {
         group: true,
         children: [
           {
-            text: '仪表盘',
+            text: '工作台',
             link: '/dashboard',
             icon: 'anticon anticon-appstore-o',
             shortcutRoot: true,
@@ -101,7 +101,7 @@ export class StartupService {
               },
               {
                 text: '方案详情',
-                link: '/network/design',
+                link: '/network/projects',
                 // reuse: false,
               },
               // {

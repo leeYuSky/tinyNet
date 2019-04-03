@@ -5,15 +5,15 @@ import { NetworkGenerateProjectComponent } from './generate-project/generate-pro
 import { NetworkSelectComponent } from './select/select.component';
 import { NetworkControlComponent } from './control/control.component';
 import { NetworkResultComponent } from './result/result.component';
+import { NetworkProjectDetailsComponent } from './project-details/project-details.component';
 
 const routes: Routes = [
 
-  { path: 'design', component: NetworkDesignComponent },
+  { path: 'projects', component: NetworkProjectDetailsComponent },
   { path: 'generateProject', component: NetworkGenerateProjectComponent },
   { path: 'select', component: NetworkSelectComponent },
   { path: 'control', component: NetworkControlComponent },
-  { path: 'result', component: NetworkResultComponent },
-];
+  { path: 'result', component: NetworkResultComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

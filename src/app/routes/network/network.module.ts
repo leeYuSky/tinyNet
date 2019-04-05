@@ -15,6 +15,7 @@ import { NetworkSelectWindTurbineComponent } from './select/wind-turbine/wind-tu
 import { NetworkSelectPhotovoltaicComponent } from './select/photovoltaic/photovoltaic.component';
 import { NetworkSelectGeneratorComponent } from './select/generator/generator.component';
 import { NetworkProjectDetailsComponent } from './project-details/project-details.component';
+import {NetworkProjectDetailsCardComponent} from "./project-details/project-details-card.component";
 // import {BatteryLinehartHostDirective} from "./select/view/battery-linechart-host.directive";
 
 const COMPONENTS = [
@@ -31,7 +32,8 @@ const COMPONENTS_NOROUNT = [
   NetworkSelectTurbineComponent,
   NetworkSelectWindTurbineComponent,
   NetworkSelectPhotovoltaicComponent,
-  NetworkSelectGeneratorComponent];
+  NetworkSelectGeneratorComponent,
+  NetworkProjectDetailsCardComponent];
 
 @NgModule({
   imports: [

@@ -1,0 +1,28 @@
+<div>
+  <nz-card [nzCover]="coverTemplate" [nzActions]="[actionSetting,actionEdit,actionEllipsis]" [nzHoverable]="true">
+    <nz-card-meta [nzTitle]="titleTemplate" [nzDescription]="descriptionTemplate"></nz-card-meta>
+    <div>
+          <span class="text-grey">
+            创建于 2018-04-13 23:59:59
+          </span>
+    </div>
+  </nz-card>
+  <ng-template #titleTemplate>
+    <div style="color: #1890ff;"><nz-badge nzStatus="error"></nz-badge>刘敬成方案{{recordDate}}</div>
+  </ng-template>
+  <ng-template #descriptionTemplate>
+    <p>该离网方案包含17个设备，共计5种设备类型。</p>
+  </ng-template>
+  <ng-template #coverTemplate>
+    <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"/>
+  </ng-template>
+  <ng-template #actionSetting>
+    <i class="anticon anticon-file-text"></i>
+  </ng-template>
+  <ng-template #actionEdit>
+    <i class="anticon anticon-delete"></i>
+  </ng-template>
+  <ng-template #actionEllipsis>
+    <i class="anticon anticon-ellipsis"></i>
+  </ng-template>
+</div>
